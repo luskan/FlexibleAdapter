@@ -37,6 +37,5 @@ dependencies {
     implementation androidx.appCompat
 }
 
-if (project.hasProperty('all') || project.hasProperty('ui')) {
-    apply from: '../maven-install.gradle'
-}
+// Always apply maven-install for JitPack compatibility
+apply from: '../maven-install.gradle'

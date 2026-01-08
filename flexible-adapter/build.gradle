@@ -40,7 +40,5 @@ dependencies {
     implementation androidx.recyclerView
 }
 
-if (project.hasProperty('all') || project.hasProperty('adapter')) {
-    apply from: '../maven-install.gradle'
-    apply from: '../maven-publish.gradle'
-}
+// Always apply maven-install for JitPack compatibility
+apply from: '../maven-install.gradle'
