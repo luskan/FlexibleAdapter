@@ -1,15 +1,7 @@
 apply plugin: 'com.android.library'
-apply plugin: 'eu.davidea.grabver'
 
-versioning {
-    major 1
-    minor 0
-    patch 0
-    //preRelease "b4"
-    dependsOn "install"
-}
-// For maven repository
-version = versioning.name
+// Static version (grabver plugin removed due to broken dependencies)
+version = rootProject.ext.libraryVersionName
 
 ext {
     // Library Settings
@@ -23,13 +15,13 @@ ext {
 }
 
 android {
-    compileSdkVersion targetSdk
+    namespace 'eu.davidea.flexibleadapter.databinding'
+    compileSdk rootProject.ext.compileSdk
 
     defaultConfig {
-        minSdkVersion minSdk
-        targetSdkVersion targetSdk
-        versionCode versioning.code
-        versionName versioning.name
+        minSdk rootProject.ext.minSdk
+        versionCode rootProject.ext.libraryVersionCode
+        versionName rootProject.ext.libraryVersionName
     }
     buildTypes {
         release {
@@ -37,8 +29,8 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
-    dataBinding {
-        enabled = true
+    buildFeatures {
+        dataBinding = true
     }
 }
 

@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest package="eu.davidea.samples.flexibleadapter"
-          xmlns:android="http://schemas.android.com/apk/res/android">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
 
 	<uses-permission android:name="android.permission.INTERNET"/>
 
@@ -12,16 +11,16 @@
 		<activity
 			android:name=".SplashActivity"
 			android:theme="@style/SplashTheme"
-			android:launchMode="singleTop">
+			android:launchMode="singleTop"
+			android:exported="true">
 			<intent-filter>
 				<action android:name="android.intent.action.MAIN"/>
 				<category android:name="android.intent.category.LAUNCHER"/>
 			</intent-filter>
 		</activity>
-		<!-- #139 Test for Automatic configuration change -->
 		<activity android:name=".MainActivity"
-			android:configChanges="orientation|screenSize">
-		<!--<activity android:name=".MainActivity">-->
+			android:configChanges="orientation|screenSize"
+			android:exported="true">
 			<meta-data
 				android:name="android.app.searchable"
 				android:resource="@xml/searchable"/>
@@ -33,7 +32,8 @@
 			android:name=".ViewPagerActivity"
 			android:label="@string/title_activity_view_pager"
 			android:parentActivityName=".MainActivity"
-			android:theme="@style/AppTheme">
+			android:theme="@style/AppTheme"
+			android:exported="false">
 			<meta-data
 				android:name="android.support.PARENT_ACTIVITY"
 				android:value="eu.davidea.samples.flexibleadapter.MainActivity"/>

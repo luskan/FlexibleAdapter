@@ -1,47 +1,31 @@
 apply plugin: 'com.android.application'
-apply plugin: 'eu.davidea.grabver'
 
-versioning {
-    major 5
-    minor 1
-    patch 0
-}
+// Static version (grabver plugin removed due to broken dependencies)
 
 android {
-    compileSdkVersion targetSdk
+    namespace 'eu.davidea.samples.flexibleadapter'
+    compileSdk rootProject.ext.compileSdk
 
     defaultConfig {
         applicationId 'eu.davidea.samples.flexibleadapter'
-        minSdkVersion minSdk
-        targetSdkVersion targetSdk
-        versionCode versioning.code
-        versionName versioning.name
+        minSdk rootProject.ext.minSdk
+        targetSdk rootProject.ext.targetSdk
+        versionCode rootProject.ext.libraryVersionCode
+        versionName rootProject.ext.libraryVersionName
 
-        // https://medium.com/@chrisbanes/appcompat-v23-2-age-of-the-vectors-91cbafa87c88
-        // https://developer.android.com/studio/write/vector-asset-studio.html
         vectorDrawables.useSupportLibrary = true
-
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-
-        android.applicationVariants.all { variant ->
-            variant.outputs.all {
-                outputFileName = "flexible-adapter-v" + versioning.name + "-c" + versioning.code + ".apk"
-            }
-        }
     }
-    // Configure only for each module that uses Java 8 language features
-    // (either in its source code or through dependencies).
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
     }
     buildTypes {
         debug {
-            versionNameSuffix ' #' + versioning.build + versioning.builtOn
+            versionNameSuffix '-debug'
             minifyEnabled false
         }
         release {
-            zipAlignEnabled true
             minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
@@ -49,11 +33,11 @@ android {
     testOptions {
         unitTests.returnDefaultValues = true
     }
-    lintOptions {
+    lint {
         abortOnError false
     }
-    dataBinding {
-        enabled = true
+    buildFeatures {
+        dataBinding = true
     }
 }
 

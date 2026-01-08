@@ -50,7 +50,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.StyleRes;
 import eu.davidea.flexibleadapter.SelectableAdapter;
-import eu.davidea.flexibleadapter.helpers.R;
+import androidx.appcompat.R;
 
 /**
  * Set of utility methods most used in all applications.

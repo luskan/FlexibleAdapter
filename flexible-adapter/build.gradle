@@ -1,16 +1,7 @@
 apply plugin: 'com.android.library'
-apply plugin: 'com.vanniktech.android.javadoc'
-apply plugin: 'eu.davidea.grabver'
 
-versioning {
-    major 5
-    minor 1
-    patch 0
-    //preRelease = 'SNAPSHOT'
-    dependsOn 'install'
-}
-// For maven repository
-version = versioning.name
+// Static version (grabver plugin removed due to broken dependencies)
+version = rootProject.ext.libraryVersionName
 
 ext {
     // Library Settings
@@ -22,16 +13,20 @@ ext {
 }
 
 android {
-    compileSdkVersion targetSdk
+    namespace 'eu.davidea.flexibleadapter'
+    compileSdk rootProject.ext.compileSdk
 
     defaultConfig {
-        minSdkVersion minSdk
-        targetSdkVersion targetSdk
-        versionCode versioning.code
-        versionName versioning.name
+        minSdk rootProject.ext.minSdk
+        versionCode rootProject.ext.libraryVersionCode
+        versionName rootProject.ext.libraryVersionName
+        buildConfigField "String", "VERSION_NAME", "\"${rootProject.ext.libraryVersionName}\""
     }
-    lintOptions {
+    lint {
         abortOnError false
+    }
+    buildFeatures {
+        buildConfig = true
     }
     buildTypes {
         release {
