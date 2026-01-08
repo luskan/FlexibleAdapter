@@ -1,5 +1,5 @@
+// Sample app excluded - has unavailable dependencies
 include ':flexible-adapter',
-        ':flexible-adapter-app',
         ':flexible-adapter-databinding',
         ':flexible-adapter-ui',
         ':flexible-adapter-livedata'
