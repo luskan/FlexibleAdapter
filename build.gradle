@@ -111,8 +111,8 @@ buildscript {
         android_junit5_version = '1.10.0.0'
         // grabver removed - causes build failure due to missing transitive dependency
         // Library version is now static
-        libraryVersionCode = 51001
-        libraryVersionName = '5.1.1'
+        libraryVersionCode = 51002
+        libraryVersionName = '5.1.2'
     }
 
     dependencies {
